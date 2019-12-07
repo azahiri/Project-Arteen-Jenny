@@ -4,11 +4,7 @@ Jinja2
 tweepy
 pandas
 numpy
-pickle
 IPython.display
 matplotlib.pyplot
 seaborn
-time
-datetime
 textblob
-re
