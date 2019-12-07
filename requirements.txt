@@ -5,6 +5,6 @@ tweepy
 pandas
 numpy
 IPython
-matplotlib.pyplot
+matplotlib
 seaborn
 textblob
