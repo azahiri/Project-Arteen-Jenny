@@ -1,0 +1,62 @@
+
+h1 {font-family:  monaco, Consolas, "Lucida Console", monospace;}
+
+p {font-family:  monaco, Consolas, "Lucida Console", monospace;}
+body {padding: 14px 16px;
+      margin-left: 120px;
+     background-color: aliceblue;
+}
+
+        
+ul {font-family:"Allerta Stencil";
+	font-size: 15pt;
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    font-family:  monaco, Consolas, "Lucida Console", monospace;
+    display: inline-block;
+    color: black;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color:#def3fd;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color:  #fcfcff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    font-size: 12pt;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color:aliceblue}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
