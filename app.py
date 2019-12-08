@@ -23,7 +23,75 @@ from flask import Flask, render_template, request
 
 from run_analysis import twitter_setup, get_tweets_by_username, process_tweets, show_text, show_len, show_date, show_ID, show_source, show_likes, show_RT, obtain_sources, clean_tweet, analyze_polarity, analyze_subjectivity
 
+#import all the necessary functions from overall.py file 
+import os
+from overall import remove_url, create_dictionary, clean_tweets, get_sentiment, get_label, auth, bar_plot
+
 app = Flask(__name__)
+
+@app.route("/overallsentimentanalysis", methods=["GET", "POST"])
+def overall_sentiment_analysis():
+    if request.method == "POST":
+        api = auth()
+        user_input = request.form["firstkeyword"]
+        public_tweets = api.search(user_input, count = 1000)
+        dictionary_tweets = create_dictionary(public_tweets)
+        cleaned_tweets = clean_tweets(dictionary_tweets)
+        polarity1 = '{0:.2f}'.format(get_sentiment(cleaned_tweets)[0])
+        subjectivity1 = '{0:.2f}'.format(get_sentiment(cleaned_tweets)[1])
+        analysis = get_sentiment(cleaned_tweets)
+        label1 = get_label(analysis, threshold=0)
+
+        #creating a if statement in case the user wants to analyze another keyword
+        if  request.form['option'] == "yes":
+            user_input2 = request.form["secondkeyword"]
+            public_tweets2 = api.search(user_input2, count = 1000)
+            dictionary_tweets2 = create_dictionary(public_tweets2)
+            cleaned_tweets2 = clean_tweets(dictionary_tweets2)
+            analysis2 = get_sentiment(cleaned_tweets2)
+            polarity2 = '{0:.2f}'.format(get_sentiment(cleaned_tweets2)[0])
+            subjectivity2 = '{0:.2f}'.format(get_sentiment(cleaned_tweets2)[1])
+            label2 = get_label(analysis2, threshold=0)
+            
+            n_group = 2
+            comparison1 = (polarity1, subjectivity1)
+            comparison2 = (polarity2, subjectivity2)
+
+            #create plot 
+            fig, ax= plt.subplots()
+            index = np.arange(n_group)
+            bar_width = 0.35 
+            opacity = 0.8 
+
+            rects1 = plt.bar(index, comparison1, bar_width,
+            alpha = opacity,
+            color = 'b',
+            label = user_input)
+            
+            rects2 = plt.bar(index + bar_width, comparison2, bar_width,
+            alpha = opacity,
+            color = 'r',
+            label = user_input2)
+
+            plt.ylabel('Score')
+            plt.title('Polarity and Subjectivity Comparison')
+            plt.xticks(index + bar_width/2, ('Polarity', 'Subjectivity'))
+            plt.legend()
+
+            plt.tight_layout
+            plt.savefig('static/images/barplot.png')
+
+            return render_template(
+                "results1.html", firstkeyword = user_input, polarity1 = polarity1, subjectivity1 = subjectivity1,
+                label1= label1, secondkeyword = user_input2 , polarity2 = polarity2, subjectivity2 = subjectivity2,
+                label2 = label2, barplot = '/static/images/barplot.png') 
+
+        else: 
+            return render_template(
+            "results2.html", firstkeyword = user_input, polarity1 = polarity1, subjectivity1 = subjectivity1,
+            analysis = analysis, label1=label1) 
+
+    return render_template("overall.html", error=None)
 
 @app.route("/sentimentanalysis", methods=["GET", "POST"])
 def individual_sentiment_analysis():
@@ -121,6 +189,10 @@ def individual_sentiment_analysis():
 @app.route("/")
 def home():
     return render_template("homepage.html")
+
+@app.route("/about")
+def about():
+    return render_template("aboutus.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

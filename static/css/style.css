@@ -1,11 +1,15 @@
-
 h1 {font-family:  monaco, Consolas, "Lucida Console", monospace;}
+
+h2 {font-family:  monaco, Consolas, "Lucida Console", monospace;}
 
 p {font-family:  monaco, Consolas, "Lucida Console", monospace;}
 body {padding: 14px 16px;
       margin-left: 120px;
      background-color: aliceblue;
 }
+
+div {display:none;}
+
 
         
 ul {font-family:"Allerta Stencil";
@@ -21,10 +25,9 @@ li {
 }
 
 li a, .dropbtn {
-    font-family:  monaco, Consolas, "Lucida Console", monospace;
     display: inline-block;
     color: black;
-    text-align: left;
+    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
@@ -59,4 +62,39 @@ li.dropdown {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+img {border-radius: 0px; border: 3px solid lightskyblue; margin-top: 30px;}
+
+form{margin-left: 15px;
+    width: 200%;
+}
+
+
+
+input[type=text] {
+   width: 10%;
+   padding: 12px 20px;
+   margin: 8px 0;
+}
+input[type=submit] {
+   width: 5%;
+   padding: 12px 20px;
+   margin: 8px 0;
+}
+input[type=reset] {
+   width: 5%;
+   padding: 12px 20px;
+   margin: 8px 0;
+}
+select{
+   width: 15%;
+   padding: 15px 20px;
+   margin: 8px 5px;
+
+ }
+textarea{
+   width: 30%;
+   padding: 12px 20px;
+   margin: 8px 0;
 }

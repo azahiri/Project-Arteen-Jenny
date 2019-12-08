@@ -6,8 +6,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="mobile-web-app-capable" content="yes" /> 
-  <link rel="stylesheet" href="{{ url_for('static',    filename='css/style.css') }}">  
-	<title>Sentiment Analysis</title>
+  <link rel="stylesheet" href="{{ url_for('static',    filename='css/style.css') }}">
+	<title>Individual Sentiment Analysis</title>
 
 	<style>
 	/* Your styles go here */
@@ -22,7 +22,7 @@
     {% extends "template.html" %}
     {% block content %}
 
-<h1 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;">Sentiment Analysis</h1>
+<h1 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;">Individual Sentiment Analysis</h1>
 <form method="post"> 
     <p> Input the Twitter username that you would like to analyze: </p>
     @ <input type="text" name="username" maxlength="100" id="username" />

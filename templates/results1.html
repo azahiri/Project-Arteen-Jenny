@@ -1,0 +1,67 @@
+<html lang="en"> 
+
+  <head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+  <link rel="stylesheet" href="style.css" type="text/css"/>  
+  <title>Sentiment Analysis</title>
+
+	<style>
+  /* Your styles go here */
+  div {display: none; }
+	</style>
+  
+  <script src="http://code.jquery.com/jquery.min.js"></script> 
+	<script>
+      $(function (){
+         /* Jquery 2 */
+        $("#y").click(function(){
+        $("#section2").fadeIn("slow");
+        
+    })
+      });
+	/* Your JavaScript goes here */
+ 
+	</script>
+  </head>
+
+  <body>
+      {% extends "template.html" %}
+      {% block content %}
+
+    <!-- <header> 
+    <ul id="top"> 	
+    <li><a href="homepage.htm">Home</a></li>
+    <li class="dropdown">
+    <a href="overall.htm" class="dropbtn">Overall Sentiment</a>
+    <li class="dropdown">
+        <a href="individual.htm" class="dropbtn">Individual Sentiment</a>
+   
+    </header> -->
+	<!-- Your HTML goes here -->
+<!--use <i> for italicizing word, <br> for break, <hr> for a line break, <h1> </h1> for header-->
+<h1> Sentiment Analysis </h1>
+<p> 
+    The polarity and the subjectivity of the first keyword, {{ firstkeyword }}, is below.<br>
+    Polarity: {{ polarity1 }}  Subjectivity: {{ subjectivity1 }}. <br>
+    Based on the polarity, the overall sentiment of the keyword {{ firskeyword }} is {{ label1 }}. <br><br>
+
+    The polarity and the subjectivity of the second keyword, {{ secondkeyword }}, is below.<br>
+    Polarity: {{ polarity2 }}  Subjectivity: {{ subjectivity2 }}. <br>
+    Based on the polarity, the overall sentiment of the second keyword {{ subjectivity2 }} is {{ label2 }}. <br><br>
+
+    For your reference of the analyses... 
+    Polarity is a float within the range [-1.0, 1.0], -1.0 being completely negative and 1.0 being completely positive.<br>
+    Subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective.<br><br>
+</p>
+<p>
+    Below is the bar plot that displays the comparison of polarity and subjectivity between the two keywords.<br>
+    <img src={{barplot}} alt="barplot" height="auto" width="auto">">   
+
+</p>
+
+<p>
+    <a href="{{ url_for('overall_sentiment_analysis') }}"><button style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" type="button">Search Again</button></a>
+</p>
+{% endblock %}  
+  </body>
+</html>

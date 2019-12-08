@@ -18,8 +18,11 @@
     <header> 
         <ul id="top"> 	
         <li><a href="{{ url_for('home') }}" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;">Home</a></li>
+        <li><a href="{{ url_for('about') }}" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;">About</a></li>
         <li class="dropdown">
-            <a href="{{ url_for('individual_sentiment_analysis') }}" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" class="dropbtn">Sentiment Analysis</a>            
+          <a href="{{ url_for('overall_sentiment_analysis') }}" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" class="dropbtn">Overall Sentiment Analysis</a>
+        <li class="dropdown">
+            <a href="{{ url_for('individual_sentiment_analysis') }}" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" class="dropbtn">Individual Sentiment Analysis</a>            
         </header>
         
         {% block content %}

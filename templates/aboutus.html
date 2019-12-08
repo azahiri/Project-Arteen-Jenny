@@ -1,0 +1,55 @@
+<html lang="en"> 
+
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+      <meta name="mobile-web-app-capable" content="yes" /> 
+      <link rel="stylesheet" href="{{ url_for('static',    filename='css/style.css') }}">  
+  <title>About Us</title>
+
+	<style>
+	/* Your styles go here */
+	</style>
+	
+	<script>
+	/* Your JavaScript goes here */
+	</script>
+  </head>
+
+  <body>
+      {% extends "template.html" %}
+      {% block content %}
+
+<h1>About Us</h1>
+
+<h2 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> Who are we? </h2>
+
+<p> We are a group of students at Babson College, learning Python through 
+Problem Solving & Software Design class. We created this website for the purpose of 
+providing a simple and straighforward website that can provide sentiment analysis for any 
+keyword users puts in! Sentiment analysis is a process of analyzing the emotional tone behind the series of words. 
+Through sentiment analysis, users can identify if the keyword is positive, neutral, or negative. 
+Moreover, it is one of the most commonly used tools for analyzing opinions about a specific topic. 
+We wanted to create an accessible and easy-to-use website that does the hard work for numerous companies that conduct sentiment analysis. 
+Rather than having to create a whole programming application to conduct sentiment analysis, 
+users can simply go on our website to get sentiment-related information about any topics. 
+</p>
+
+<h2 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> How does our analysis work? </h2>
+
+<p> Sentiment analysis of the keywords users put in would be sentiments based on the tweets posted 
+on Twitter server. Since Twitter is one of the most popular social media platforms, nowadays, we believe that 
+our analysis would provide a holistic and comprehensive view of the overall sentiment of the 
+public. Through our website, users would get three specific analyses, which includes polaritiy, subjectivity, and 
+overall sentiment. 
+</p>
+
+<img id="pic1" src="https://www.cure-sa.eu/fileadmin/_processed_/6/6/csm_Sentimentanalyse_c3fbda7133.jpg" title="hello"/>
+
+</form>
+
+  {% endblock %}  
+</body>
+</html>

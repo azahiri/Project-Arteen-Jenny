@@ -1,0 +1,80 @@
+<html lang="en"> 
+
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+      <meta name="mobile-web-app-capable" content="yes" /> 
+      <link rel="stylesheet" href="{{ url_for('static',    filename='css/style.css') }}">  
+
+  <title>Sentiment Analysis</title>
+
+	<style>
+  /* Your styles go here */
+  
+	</style>
+  
+  <script src="http://code.jquery.com/jquery.min.js"></script> 
+	<script>
+
+	/* Your JavaScript goes here */
+  function validate()
+  {
+    if (document.getElementById("firstkeyword").value =="")
+        { alert ("KeyWord is Required!"); 
+          document.getElementById("firstkeyword").focus();}
+    else if (document.getElementById("yes").checked==true && document.getElementById("secondkeyword").value=="")
+        {
+          alert ("Second Keyword is Required!")
+          document.getElementById("secondkeyword").focus();
+        }
+    else 
+        {
+          return true;
+        }
+    return false;
+            
+  }
+ 
+	</script>
+  </head>
+
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+    <!-- <header> 
+    <ul id="top"> 	
+    <li><a href="homepage.htm">Home</a></li>
+    <li class="dropdown">
+    <a href="overall.htm" class="dropbtn">Overall Sentiment</a>
+    <li class="dropdown">
+        <a href="individual.htm" class="dropbtn">Individual Sentiment</a>
+   
+    </header> -->
+	<!-- Your HTML goes here -->
+<!--use <i> for italicizing word, <br> for break, <hr> for a line break, <h1> </h1> for header-->
+<h1>Overall Sentiment Analysis</h1>
+<form method="POST" name="form1" onsubmit="return validate()"> 
+    <p> What topic would you like to search?</p>
+    <input type="text" name="firstkeyword" maxlength="100" id="first"/>
+
+    <p> Would you like to search a second keyword? </p>
+    <input type="radio" name="option" value="yes" id="yes">
+    <label for="yes" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" >YES</label>
+    <input type="radio" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" name="option" value="no" id="no">
+    <label for="no" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" >NO</label>
+  <div id="section2">
+    <p id="p2"> What topic would you like to search as your second keyword?</p>
+    <input type="text" name="secondkeyword" maxlength="100" id="second"/> 
+
+  </div>
+  <p> 
+  <input type="submit" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" value="Submit" name="Submit"  />
+  <input type="reset" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" value="Reset" name="Reset" />
+</p>
+</form>
+
+{% endblock %}
+  </body>
+</html>
