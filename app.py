@@ -98,6 +98,7 @@ def overall_sentiment_analysis():
 
 @app.route("/sentimentanalysis", methods=["GET", "POST"])
 def individual_sentiment_analysis():
+    yield "<br/>"   # notice that we are yielding something as soon as possible
     if request.method == "POST":
         input_keywords = request.form["keywords"]
         SCREEN_NAME = request.form['username']
