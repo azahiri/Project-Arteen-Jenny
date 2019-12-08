@@ -82,12 +82,12 @@ def overall_sentiment_analysis():
             plt.legend()
 
             plt.tight_layout
-            plt.savefig('static/images/barplot.png')
+            plt.savefig(f'static/images/{user_input2}.png')
 
             return render_template(
                 "results1.html", firstkeyword = user_input, polarity1 = polarity1, subjectivity1 = subjectivity1,
                 label1= label1, secondkeyword = user_input2 , polarity2 = polarity2, subjectivity2 = subjectivity2,
-                label2 = label2, barplot = '/static/images/barplot.png') 
+                label2 = label2, barplot = f'/static/images/{user_input2}.png') 
 
         else: 
             return render_template(
@@ -98,7 +98,6 @@ def overall_sentiment_analysis():
 
 @app.route("/sentimentanalysis", methods=["GET", "POST"])
 def individual_sentiment_analysis():
-    yield "<br/>"   # notice that we are yielding something as soon as possible
     if request.method == "POST":
         input_keywords = request.form["keywords"]
         SCREEN_NAME = request.form['username']
