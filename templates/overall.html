@@ -29,14 +29,37 @@
 
 //   })
 	/* Your JavaScript goes here */
+  // function validate()
+  // {
+  //   if (document.getElementById("firstkeyword").value =="")
+  //       { alert ("KeyWord is Required!"); 
+  //         document.getElementById("firstkeyword").focus();}
+  //   else if (document.getElementById("yes").checked==true && document.getElementById("secondkeyword").value=="")
+  //       {
+  //         alert ("Second Keyword is Required!")
+  //         document.getElementById("secondkeyword").focus();
+  //       }
+  //   else 
+  //       {
+  //         return true;
+  //       }
+  //   return false;
+            
+  // }
+
   function validate()
   {
     if (document.getElementById("firstkeyword").value =="")
-        { alert ("KeyWord is Required!"); 
+        {document.getElementById("error1").style.display="inline"; 
           document.getElementById("firstkeyword").focus();}
+    else if (document.getElementById("yes").checked==false && document.getElementById("no").checked==false)
+        {
+          document.getElementById("error2").style.display="inline"; 
+          document.getElementById("no").focus();
+        }
     else if (document.getElementById("yes").checked==true && document.getElementById("secondkeyword").value=="")
         {
-          alert ("Second Keyword is Required!")
+          document.getElementById("error3").style.display="inline"; 
           document.getElementById("secondkeyword").focus();
         }
     else 
@@ -77,16 +100,17 @@
 <h1>Overall Sentiment Analysis</h1>
 <form method="POST" name="form1" onsubmit="return validate()"> 
     <p> What topic would you like to search?</p>
-    <input type="text" name="firstkeyword" maxlength="100" id="firstkeyword"/>
+    <input type="text" name="firstkeyword" maxlength="100" id="firstkeyword"/> <span id="error1" style="font-family:  monaco, Consolas, 'Lucida Console', monospace; display: none; color: red"> Keyword Required! </span>
 
     <p> Would you like to search a second keyword? </p>
     <input type="radio" name="option" value="yes" id="yes" onclick="firstsecond()">
     <label for="yes" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" >YES</label>
     <input type="radio" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" name="option" value="no" id="no" onclick="firstsecond()">
     <label for="no" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" >NO</label>
+    <span id="error2" style="font-family:  monaco, Consolas, 'Lucida Console', monospace; display: none; color: red"> Selection Required! </span>
   <div id="section2">
     <p id="p2"> What topic would you like to search as your second keyword?</p>
-    <input type="text" name="secondkeyword" maxlength="100" id="secondkeyword"/> 
+    <input type="text" name="secondkeyword" maxlength="100" id="secondkeyword"/> <span id="error3" style="font-family:  monaco, Consolas, 'Lucida Console', monospace; display: none; color: red"> Second Keyword Required! </span>
 
   </div>
   <p> 
