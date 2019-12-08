@@ -24,28 +24,24 @@
 
     <h1> Welcome to the Sentiment Analysis world! </h1>
 
-    <p> 
-    
-        <img id="pic1" src="https://www.cure-sa.eu/fileadmin/_processed_/6/6/csm_Sentimentanalyse_c3fbda7133.jpg" title="hello"/>
-    </p>
+
     
     <h2 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> What sentiment information would you like to get? </h2>
     
     <h2 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> User Guidelines</h2>
-    <p> If you want to get the general sentiment about a specific keyword, 
-      you can use our Overall Sentiment option. This also, allows you to 
+    <p> If you want to get the general sentiment about a specific keyword on Twitter, 
+      you can use our <b><a href="{{ url_for('overall_sentiment_analysis') }}">Overall Sentiment Analysis</a></b> option. This also allows you to 
     compare the general sentiment of two different keywords. 
-    You can utilize these tools to compare the sentiment of two rivalry keywords
+    You can utilize these tools to compare the sentiment of two rivalry keywords (e.g. Trump vs Obama, Lakers vs Celtics, etc.)
     that you would like to analyze. Moreover, it also provides a comparative bar chart 
     of the two keywords, which would allow you to better identify the differences among 
     the sentiments of two keywords.  </p>
     
-    <p> If you prefer to get the sentiment of a specific twitter account regarding 
-      various topics, you can utilize our Individual Sentiment option above. Simply click on the 
-      Individual Sentiment Analysis above. This option allows the users to put as many keywords as 
-      you would like to analyze. Users must put in a specific user account id, for us to analyze the 
+    <p> If you prefer to get the sentiment of a specific Twitter account regarding 
+      various topics, you can utilize our <b><a href="{{ url_for('individual_sentiment_analysis') }}">Individual Sentiment Analysis</a></b> option above. This option allows you to input as many keywords as 
+      you would like to analyze. For example, you can analyze the sentiments of Donald Trump's tweets about the impeachment inquiry. You must put in a specific Twitter username (e.g. @elonmusk), for us to analyze the 
       sentiments! It also provides a several informative charts that depicts the historical 
-      changes in the length of the tweets, historical changes of the likes and retweets of the tweets
+      changes in the length of the tweets and historical changes of the likes and retweets of the tweets
       regarding the selected topics posted by the selected twitter account. 
     </p>
     

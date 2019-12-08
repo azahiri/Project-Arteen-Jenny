@@ -15,9 +15,19 @@
   
 	</style>
   
-  <script src="http://code.jquery.com/jquery.min.js"></script> 
-	<script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script>
 
+/* Jquery goes here */ 
+$(function(){
+  $("#yes").click(function(){
+    $("#section2").fadeIn()
+  })
+  $("#no").click(function(){
+    $("#section2").fadeOut()
+  })
+
+  })
 	/* Your JavaScript goes here */
   function validate()
   {
@@ -36,6 +46,8 @@
     return false;
             
   }
+
+
  
 	</script>
   </head>
@@ -43,21 +55,13 @@
   <body>
     {% extends "template.html" %}
     {% block content %}
-    <!-- <header> 
-    <ul id="top"> 	
-    <li><a href="homepage.htm">Home</a></li>
-    <li class="dropdown">
-    <a href="overall.htm" class="dropbtn">Overall Sentiment</a>
-    <li class="dropdown">
-        <a href="individual.htm" class="dropbtn">Individual Sentiment</a>
-   
-    </header> -->
+
 	<!-- Your HTML goes here -->
 <!--use <i> for italicizing word, <br> for break, <hr> for a line break, <h1> </h1> for header-->
 <h1>Overall Sentiment Analysis</h1>
 <form method="POST" name="form1" onsubmit="return validate()"> 
     <p> What topic would you like to search?</p>
-    <input type="text" name="firstkeyword" maxlength="100" id="first"/>
+    <input type="text" name="firstkeyword" maxlength="100" id="firstkeyword"/>
 
     <p> Would you like to search a second keyword? </p>
     <input type="radio" name="option" value="yes" id="yes">
@@ -66,7 +70,7 @@
     <label for="no" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" >NO</label>
   <div id="section2">
     <p id="p2"> What topic would you like to search as your second keyword?</p>
-    <input type="text" name="secondkeyword" maxlength="100" id="second"/> 
+    <input type="text" name="secondkeyword" maxlength="100" id="secondkeyword"/> 
 
   </div>
   <p> 

@@ -27,7 +27,10 @@ from run_analysis import twitter_setup, get_tweets_by_username, process_tweets, 
 import os
 from overall import remove_url, create_dictionary, clean_tweets, get_sentiment, get_label, auth, bar_plot
 
+image_folder = os.path.join('static', 'images')
+
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = image_folder
 
 @app.route("/overallsentimentanalysis", methods=["GET", "POST"])
 def overall_sentiment_analysis():
