@@ -19,15 +19,15 @@
 <script>
 
 /* Jquery goes here */ 
-$(function(){
-  $("#yes").click(function(){
-    $("#section2").fadeIn()
-  })
-  $("#no").click(function(){
-    $("#section2").fadeOut()
-  })
+// $(function(){
+//   $("#yes").click(function(){
+//     $("#section2").fadeIn()
+//   })
+//   $("#no").click(function(){
+//     $("#section2").fadeOut()
+//   })
 
-  })
+//   })
 	/* Your JavaScript goes here */
   function validate()
   {
@@ -47,6 +47,22 @@ $(function(){
             
   }
 
+  function firstsecond() {
+  // Get the checkbox
+  var checkBox1 = document.getElementById("yes");
+  var checkBox2 = document.getElementById("no");
+  // Get the output text
+  var text = document.getElementById("section2");
+
+  // If the checkbox is checked, display the output text
+  if (checkBox1.checked == true){
+    text.style.display = "block";
+  } else if (checkBox2.checked == true){
+    text.style.display = "none";
+  } else {
+    text.style.display = "none";
+  }
+}
 
  
 	</script>
@@ -64,9 +80,9 @@ $(function(){
     <input type="text" name="firstkeyword" maxlength="100" id="firstkeyword"/>
 
     <p> Would you like to search a second keyword? </p>
-    <input type="radio" name="option" value="yes" id="yes">
+    <input type="radio" name="option" value="yes" id="yes" onclick="firstsecond()">
     <label for="yes" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" >YES</label>
-    <input type="radio" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" name="option" value="no" id="no">
+    <input type="radio" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" name="option" value="no" id="no" onclick="firstsecond()">
     <label for="no" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" >NO</label>
   <div id="section2">
     <p id="p2"> What topic would you like to search as your second keyword?</p>
