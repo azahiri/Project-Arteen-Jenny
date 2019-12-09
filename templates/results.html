@@ -38,7 +38,7 @@
     You searched the following keywords tweeted by <b>@{{SCREEN_NAME}}</b>: <b>{{KEYWORDS}}</b>
     </p>
 
-    <p>
+    <p style="width: 70%;">
         Total number of tweets about these keywords: <b>{{total_tweets}}</b> tweets.
         <br>
         The average length of tweet is: <b>{{rounded_mean}}</b> characters.
@@ -54,8 +54,8 @@
         Number of retweets: <b>{{rt_max}}</b>.
     </p>
 
-    <p>
-        Last 10 Tweets (Pol = polarity, Sub = subjectivity):
+    <p style="width: 80%;">
+        <span style="font-weight: bold; color: blue;"> Last 10 Tweets (Pol = polarity, Sub = subjectivity):</span> <br>
         <br>
         {{display_last_10_tweets | safe}}
         <br>
@@ -74,18 +74,18 @@
 
     </p>
 
-    <p>
-        <b>Likes vs Retweets on tweets over time:</b>
+    <p style="width: 80%;">
+        <b style="color:blue">Likes vs Retweets on Tweets Over Time:</b>
         <br>
         <img src={{TweetLenghtVisualization}} alt="TweetLenghtVisualization" height="auto" width="100%">
         <br>
         <br>
-        <b>Length of tweets over time:</b>
+        <b style="color:blue">Length of Tweets Over Time:</b>
         <br>
         <img src={{LikesvsRetweetsVisualization}} alt="LikesvsRetweetsVisualization" height="auto" width="100%">
     </p>
 
-    <p>
+    <p style="width: 80%;">
         <a href="{{ url_for('individual_sentiment_analysis') }}"><button style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" type="button">Search Again</button></a>
     </p>
 

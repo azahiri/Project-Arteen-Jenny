@@ -87,17 +87,33 @@
   }
 }
 
+var images = ["/static/images/happy.png","/static/images/confused.png", "/static/images/sad.png"]
+     var counter = 0 
+     function playSlideShow()
+        {
+            counter = counter+1 
+            if (counter == images.length)
+                {
+                    counter = 0 
+                }
+            document.getElementById("img").src =images[counter]
+            setTimeout("playSlideShow()", 2000)
+        }
  
 	</script>
   </head>
 
-  <body>
+  <body onload="playSlideShow()">
     {% extends "template.html" %}
     {% block content %}
 
 	<!-- Your HTML goes here -->
 <!--use <i> for italicizing word, <br> for break, <hr> for a line break, <h1> </h1> for header-->
-<h1>Overall Sentiment Analysis</h1>
+<h1 style="padding-top: 50px; padding-bottom: 30px;">Overall Sentiment Analysis</h1>
+<p>
+  <img src="/static/images/happy.png" title="smile" id="img" 
+  style="float: left; width: 300px; margin: 20px 20px 20px 20px; border: none;"/>
+</p>
 <form method="POST" name="form1" onsubmit="return validate()"> 
     <p> What topic would you like to search?</p>
     <input type="text" name="firstkeyword" maxlength="100" id="firstkeyword"/> <span id="error1" style="font-family:  monaco, Consolas, 'Lucida Console', monospace; display: none; color: red"> Keyword Required! </span>
@@ -117,6 +133,8 @@
   <input type="submit" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" value="Submit" name="Submit"  />
   <input type="reset" style="font-family:  monaco, Consolas, 'Lucida Console', monospace;" value="Reset" name="Reset" />
 </p>
+
+
 </form>
 
 {% endblock %}

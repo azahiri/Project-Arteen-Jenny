@@ -22,11 +22,29 @@
       {% extends "template.html" %}
       {% block content %}
 
-<h1>About Us</h1>
-
+      <h2 style="margin-bottom: 0px;"> Administrators </h2>
+      <table style="width:80%; margin-top: 10px;"> 
+        <tr>
+          <td> <p> <img src="/static/images/jenny.jpg" title="arteen" id="img"  style="width: 200px"/> </p></td> 
+          <td><p style="margin-left: 5px; width: 300px; vertical-align: text-top;"> Name: Jenny Son <br><br>
+                  School: Babson College <br><br>
+                  Year: Class of 2020 <br><br>
+                  Concentration: Business Analytics & Finance <br><br>
+      
+          </p></td>
+          <td><p> <img src="/static/images/arteen.jpg" title="arteen" id="img" style="width:200px" /> </p></td>
+          <td> <p style="margin-left: 5px; width: 300px; vertical-align: text-top;"> Name: Arteen Zahiri <br><br>
+                  School: Babson College <br><br>
+                  Year: Class of 2020 <br><br>
+                  Concentration: Information Technologies & Finance <br><br>
+          </p></td>
+        
+        </tr>
+      </table>
+      
 <h2 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> Who are we? </h2>
 
-<p> We are a group of students at Babson College, learning Python through 
+<p style="width: 70%;"> We are a group of students at Babson College, learning Python through 
 Problem Solving & Software Design class. We created this website for the purpose of 
 providing a simple and straighforward website that can provide sentiment analysis for any 
 keyword users puts in! Sentiment analysis is a process of analyzing the emotional tone behind the series of words. 
@@ -39,16 +57,14 @@ users can simply go on our website to get sentiment-related information about an
 
 <h2 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> How does our analysis work? </h2>
 
-<p> Sentiment analysis of the keywords users put in would be sentiments based on the tweets posted 
+<p style="width: 70%;"> Sentiment analysis of the keywords users put in would be sentiments based on the tweets posted 
 on Twitter server. Since Twitter is one of the most popular social media platforms, nowadays, we believe that 
 our analysis would provide a holistic and comprehensive view of the overall sentiment of the 
 public. Through our website, users would get three specific analyses, which includes polaritiy, subjectivity, and 
 overall sentiment. 
 </p>
 
-<img id="pic1" src="https://www.cure-sa.eu/fileadmin/_processed_/6/6/csm_Sentimentanalyse_c3fbda7133.jpg" title="hello"/>
 
-</form>
 
   {% endblock %}  
 </body>

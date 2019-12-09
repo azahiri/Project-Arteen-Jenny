@@ -5,6 +5,7 @@ h2 {font-family:  monaco, Consolas, "Lucida Console", monospace;}
 p {font-family:  monaco, Consolas, "Lucida Console", monospace;}
 body {padding: 14px 16px;
       margin-left: 120px;
+      margin-right: 120px;
      background-color: aliceblue;
 }
 
