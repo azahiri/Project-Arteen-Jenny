@@ -30,7 +30,7 @@ def twitter_setup():
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
     # Return API with authentication:
-    api = tweepy.API(auth)
+    api = tweepy.API(auth, wait_on_rate_limit=True)
     return api
 
 def get_tweets_by_username(screen_name):
@@ -49,7 +49,6 @@ def process_tweets(tweets, keywords):
     for tweet in tweets:
         for keyword in keywords:
             if keyword in tweet.text:
-                # print(tweet.text)
                 useful_tweets.append(tweet)
                 break
     return useful_tweets
