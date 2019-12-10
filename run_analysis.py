@@ -49,6 +49,7 @@ def process_tweets(tweets, keywords):
     for tweet in tweets:
         for keyword in keywords:
             if keyword in tweet.text:
+                # print(tweet.text)
                 useful_tweets.append(tweet)
                 break
     return useful_tweets

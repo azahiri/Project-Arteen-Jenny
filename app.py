@@ -20,6 +20,7 @@ import re
 from credentials import *    # This allows us to use the keys as variables
 
 from flask import Flask, render_template, request
+from celery import Celery
 
 from run_analysis import twitter_setup, get_tweets_by_username, process_tweets, show_text, show_len, show_date, show_ID, show_source, show_likes, show_RT, obtain_sources, clean_tweet, analyze_polarity, analyze_subjectivity
 
@@ -31,6 +32,11 @@ image_folder = os.path.join('static', 'images')
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = image_folder
+# app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
+# app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
+
+# celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+# celery.conf.update(app.config)
 
 @app.route("/overallsentimentanalysis", methods=["GET", "POST"])
 def overall_sentiment_analysis():
@@ -96,7 +102,12 @@ def overall_sentiment_analysis():
 
     return render_template("overall.html", error=None)
 
-@app.route("/sentimentanalysis", methods=["GET", "POST"])
+# @celery.task
+# def my_background_task(arg1, arg2):
+#     # some long running task here
+#     return result
+
+@app.route("/individualsentimentanalysis", methods=["GET", "POST"])
 def individual_sentiment_analysis():
     if request.method == "POST":
         input_keywords = request.form["keywords"]
@@ -142,7 +153,8 @@ def individual_sentiment_analysis():
         # We extract the tweet with more FAVs and more RTs:
         fav_max = np.max(data['Likes'])
         rt_max  = np.max(data['RTs'])
-
+        
+        # print(data[data.Likes == fav_max])
         fav = data[data.Likes == fav_max].index[0]
         rt  = data[data.RTs == rt_max].index[0]
 
@@ -175,15 +187,15 @@ def individual_sentiment_analysis():
         tret = pd.Series(data=data['RTs'].values, index=data['Date'])
 
         tlen.plot(figsize=(16,4), color='r')
-        plt.savefig('static/images/TweetLenghtVisualization.png')
+        plt.savefig(f'static/images/{SCREEN_NAME}-Length.png')
 
         tfav.plot(figsize=(16,4), label="Likes", legend=True)
         tret.plot(figsize=(16,4), label="Retweets", legend=True)
-        plt.savefig('static/images/LikesvsRetweetsVisualization.png')
+        plt.savefig(f'static/images/{SCREEN_NAME}-LikesRT.png')
 
         if useful_tweets:
             return render_template(
-                "results.html", KEYWORDS=KEYWORDS, SCREEN_NAME=SCREEN_NAME, total_tweets=total_tweets, rounded_mean=rounded_mean, most_fav=most_fav, most_rt=most_rt, fav_max=fav_max, rt_max=rt_max, most_fav_characters=most_fav_characters, most_rt_characters=most_rt_characters, display_last_10_tweets=display_last_10_tweets.to_html(), rounded_percent_pos_tweets=rounded_percent_pos_tweets, rounded_percent_neu_tweets=rounded_percent_neu_tweets, rounded_percent_neg_tweets=rounded_percent_neg_tweets, TweetLenghtVisualization='/static/images/TweetLenghtVisualization.png', LikesvsRetweetsVisualization='/static/images/LikesvsRetweetsVisualization.png'
+                "results.html", KEYWORDS=KEYWORDS, SCREEN_NAME=SCREEN_NAME, total_tweets=total_tweets, rounded_mean=rounded_mean, most_fav=most_fav, most_rt=most_rt, fav_max=fav_max, rt_max=rt_max, most_fav_characters=most_fav_characters, most_rt_characters=most_rt_characters, display_last_10_tweets=display_last_10_tweets.to_html(), rounded_percent_pos_tweets=rounded_percent_pos_tweets, rounded_percent_neu_tweets=rounded_percent_neu_tweets, rounded_percent_neg_tweets=rounded_percent_neg_tweets, TweetLenghtVisualization=f'static/images/{SCREEN_NAME}-Length.png', LikesvsRetweetsVisualization=f'static/images/{SCREEN_NAME}-LikesRT.png'
             )
         else:
             return render_template("index.html", error=True)
