@@ -54,6 +54,10 @@ def overall_sentiment_analysis():
         #creating a if statement in case the user wants to analyze another keyword
         if  request.form['option'] == "yes":
             user_input2 = request.form["secondkeyword"]
+            user_input2v2 = user_input2.split()
+            dash = '-'
+            user_input2v3 = dash.join(user_input2v2)
+            # print(user_input2v3)
             public_tweets2 = api.search(user_input2, count = 1000)
             dictionary_tweets2 = create_dictionary(public_tweets2)
             cleaned_tweets2 = clean_tweets(dictionary_tweets2)
@@ -88,12 +92,12 @@ def overall_sentiment_analysis():
             plt.legend()
 
             plt.tight_layout
-            plt.savefig(f'static/images/{user_input2}.png')
+            plt.savefig(f'static/images/{user_input2v3}.png')
 
             return render_template(
                 "results1.html", firstkeyword = user_input, polarity1 = polarity1, subjectivity1 = subjectivity1,
                 label1= label1, secondkeyword = user_input2 , polarity2 = polarity2, subjectivity2 = subjectivity2,
-                label2 = label2, barplot = f'/static/images/{user_input2}.png') 
+                label2 = label2, barplot = f'/static/images/{user_input2v3}.png') 
 
         else: 
             return render_template(
