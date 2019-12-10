@@ -20,7 +20,7 @@ import re
 from credentials import *    # This allows us to use the keys as variables
 
 from flask import Flask, render_template, request
-from celery import Celery
+# from celery import Celery
 
 from run_analysis import twitter_setup, get_tweets_by_username, process_tweets, show_text, show_len, show_date, show_ID, show_source, show_likes, show_RT, obtain_sources, clean_tweet, analyze_polarity, analyze_subjectivity
 
