@@ -30,7 +30,7 @@ def twitter_setup():
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
     # Return API with authentication:
-    api = tweepy.API(auth, wait_on_rate_limit=True)
+    api = tweepy.API(auth)
     return api
 
 def get_tweets_by_username(screen_name):
