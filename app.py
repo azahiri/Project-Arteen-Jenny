@@ -31,7 +31,9 @@ from overall import remove_url, create_dictionary, clean_tweets, get_sentiment, 
 image_folder = os.path.join('static', 'images')
 
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['UPLOAD_FOLDER'] = image_folder
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 # app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 # app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 
@@ -116,7 +118,10 @@ def individual_sentiment_analysis():
     if request.method == "POST":
         input_keywords = request.form["keywords"]
         SCREEN_NAME = request.form['username']
-        KEYWORDS = input_keywords.split(',')
+        KEYWORDS = input_keywords.split(', ')
+        dash = '-'
+        KEYWORDSV2 = dash.join(KEYWORDS)
+        KEYWORDSV3 = KEYWORDSV2.replace(" ", "")
 
         tweets = get_tweets_by_username(screen_name=SCREEN_NAME)
 
@@ -191,15 +196,15 @@ def individual_sentiment_analysis():
         tret = pd.Series(data=data['RTs'].values, index=data['Date'])
 
         tlen.plot(figsize=(16,4), color='r')
-        plt.savefig(f'static/images/{SCREEN_NAME}-Length.png')
+        plt.savefig(f'static/images/{SCREEN_NAME}{KEYWORDSV3}-Length.png')
 
         tfav.plot(figsize=(16,4), label="Likes", legend=True)
         tret.plot(figsize=(16,4), label="Retweets", legend=True)
-        plt.savefig(f'static/images/{SCREEN_NAME}-LikesRT.png')
+        plt.savefig(f'static/images/{SCREEN_NAME}{KEYWORDSV3}-LikesRT.png')
 
         if useful_tweets:
             return render_template(
-                "results.html", KEYWORDS=KEYWORDS, SCREEN_NAME=SCREEN_NAME, total_tweets=total_tweets, rounded_mean=rounded_mean, most_fav=most_fav, most_rt=most_rt, fav_max=fav_max, rt_max=rt_max, most_fav_characters=most_fav_characters, most_rt_characters=most_rt_characters, display_last_10_tweets=display_last_10_tweets.to_html(), rounded_percent_pos_tweets=rounded_percent_pos_tweets, rounded_percent_neu_tweets=rounded_percent_neu_tweets, rounded_percent_neg_tweets=rounded_percent_neg_tweets, TweetLenghtVisualization=f'static/images/{SCREEN_NAME}-Length.png', LikesvsRetweetsVisualization=f'static/images/{SCREEN_NAME}-LikesRT.png'
+                "results.html", KEYWORDS=KEYWORDS, SCREEN_NAME=SCREEN_NAME, total_tweets=total_tweets, rounded_mean=rounded_mean, most_fav=most_fav, most_rt=most_rt, fav_max=fav_max, rt_max=rt_max, most_fav_characters=most_fav_characters, most_rt_characters=most_rt_characters, display_last_10_tweets=display_last_10_tweets.to_html(), rounded_percent_pos_tweets=rounded_percent_pos_tweets, rounded_percent_neu_tweets=rounded_percent_neu_tweets, rounded_percent_neg_tweets=rounded_percent_neg_tweets, TweetLenghtVisualization=f'static/images/{SCREEN_NAME}{KEYWORDSV3}-Length.png', LikesvsRetweetsVisualization=f'static/images/{SCREEN_NAME}{KEYWORDSV3}-LikesRT.png'
             )
         else:
             return render_template("index.html", error=True)
@@ -213,5 +218,23 @@ def home():
 def about():
     return render_template("aboutus.html")
 
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route("/requirements")
+def requirements():
+    return render_template("requirements.html")
+
+@app.after_request
+def add_header(r):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    r.headers["Pragma"] = "no-cache"
+    r.headers["Expires"] = "0"
+    r.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    r.headers['Cache-Control'] = 'public, max-age=0'
+    return r
+
+if __name__ == '__main__':
+    app.jinja_env.auto_reload = True
+    app.run(debug=True, use_reloader=True, host='0.0.0.0')

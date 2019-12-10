@@ -1,0 +1,112 @@
+<html lang="en"> 
+
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+      <meta name="mobile-web-app-capable" content="yes" /> 
+      <link rel="stylesheet" href="{{ url_for('static',    filename='css/style.css') }}">  
+  <title>About Us</title>
+
+	<style>
+	/* Your styles go here */
+	</style>
+	
+	<script>
+	/* Your JavaScript goes here */
+	</script>
+  </head>
+
+  <body>
+      {% extends "template.html" %}
+      {% block content %}
+
+<h2 style="margin-bottom: 0px;"> Big Idea / Goal / Why did we do this? </h2>
+
+<p style="width: 70%;">
+  The main objective of our project is to provide a simple and straightforward website 
+  that can provide sentiment analysis for any keyword users put in. Sentiment analysis is a process of 
+  analyzing the emotional tone behind the series of words. Through sentiment analysis, users can identify 
+  if the keyword is positive, neutral, or negative. Moreover, it is one of the most commonly used tools for 
+  analyzing opinions about a specific topic. We wanted to create an accessible and easy-to-use website that does 
+  the hard work for numerous companies that conduct sentiment analysis. Rather than having to create a whole programming application 
+  to conduct sentiment analysis, companies can simply go on our website to get sentiment-related information about any topics. 
+
+  The sentiment analysis would be based on tweets posted on the Twitter server. 
+  Since Twitter is one of the most popular social media platforms, nowadays, 
+  we believe that Twitter would provide a holistic, comprehensive view of the overall sentiment of the public. 
+  We will provide three specific analyses, which includes polarity, subjectivity, and the overall sentiment. 
+  Our minimum viable product would be a website that provides the basic data regarding sentiment analysis such as polarity and subjectivity. 
+  For our stretch goal, we plan to provide visualized data analysis of the sentiment, 
+  which would include pie charts and scatter plots that highlight historical changes in the sentiment of a specific keyword. 
+  At that point, we may have to consider creating a business and charging political campaigns and think tanks to access our technology.
+  
+  </p>
+ 
+<h2 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> User Instruction / READ ME </h2>
+
+<p style="width: 70%;"> If you want to get the general sentiment about a specific keyword on Twitter, 
+  you can use our <b><a href="{{ url_for('overall_sentiment_analysis') }}">Overall Sentiment Analysis</a></b> option. This also allows you to 
+compare the general sentiment of two different keywords. 
+You can utilize these tools to compare the sentiment of two rivalry keywords (e.g. Trump vs Obama, Lakers vs Celtics, etc.)
+that you would like to analyze. Moreover, it also provides a comparative bar chart 
+of the two keywords, which would allow you to better identify the differences among 
+the sentiments of two keywords.  </p>
+
+<p style="width: 70%"> If you prefer to get the sentiment of a specific Twitter account regarding 
+  various topics, you can utilize our <b><a href="{{ url_for('individual_sentiment_analysis') }}">Individual Sentiment Analysis</a></b> option above. 
+  This option allows you to input as many keywords as you would like to analyze. 
+  For example, you can analyze the sentiments of Donald Trump's tweets about the impeachment inquiry. 
+  You must put in a specific Twitter username (e.g. @elonmusk), for us to analyze the 
+  sentiments! It also provides a several informative charts that depicts the historical 
+  changes in the length of the tweets and historical changes of the likes and retweets of the tweets
+  regarding the selected topics posted by the selected twitter account. 
+</p>
+
+<h2 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> Implementation Information </h2>
+
+<p style="width: 70%;"> We first created a python code that allows users to input the keywords that they wish to analyze in the 
+  visual studio. Once we created a code that provides sentiment analysis and visualizations, we decided to display our sentiment analysis 
+  software in the form of website. We wanted our software to work on a website to allow users to use our software more easily. 
+  In order to display our python codes into the form of website, we created a website using Flask and Heroku. Through the use of our codes, 
+  users simply can access our website using the url link. 
+  There, they can simply type in the keywords they wish to analyze and receive sentiment analysis. 
+</p>
+
+<h2 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> Results </h2>
+
+<h3 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> Overall Sentiment Analysis - One Keyword </h3>
+<p style="width: 80%; border: 3px solid lightskyblue; margin-top: 30px;">
+  <img src="/static/images/overall1keyword.PNG" alt="overall1keyword" height="auto" width="85%" style="border: none;">
+  <br>
+</p>
+
+<h3 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> Overall Sentiment Analysis - Two Keywords </h3>
+<p style="width: 80%; border: 3px solid lightskyblue; margin-top: 30px;">
+  <img src="/static/images/overall2keyword1.PNG" alt="overall2keyword1" height="auto" width="85%" style="border: none;">
+  <br>
+  <img src="/static/images/overall2keyword2.PNG" alt="overall2keyword2" height="auto" width="85%" style="border: none;">
+  <br>
+</p>
+
+<h3 style="font-family:  monaco, Consolas, 'Lucida Console', monospace;"> Individual Sentiment Analysis </h3>
+<p style="width: 80%; border: 3px solid lightskyblue; margin-top: 30px;">
+  <img src="/static/images/individualresults1.PNG" alt="individualresults1" height="auto" width="100%" style="border: none;">
+  <br>
+  <img src="/static/images/individualresults2.PNG" alt="individualresults2" height="auto" width="100%" style="border: none;">
+  <br>
+  <img src="/static/images/individualresults3.PNG" alt="individualresults3" height="auto" width="100%" style="border: none;">
+  <br>
+  <img src="/static/images/individualresults4.PNG" alt="individualresults4" height="auto" width="100%" style="border: none;">
+</p>
+
+<p style="width: 70%;"> 
+
+</p>
+
+
+
+  {% endblock %}  
+</body>
+</html>
