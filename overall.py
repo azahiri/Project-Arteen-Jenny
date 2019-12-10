@@ -237,5 +237,4 @@ if __name__ == "__main__":
     main() 
     print("For your reference...")
     print("Polarity is a float within the range [-1.0, 1.0], -1.0 being completely negative and 1.0 being completely positive.")
-    print("Subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective.")  
-
+    print("Subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective.")

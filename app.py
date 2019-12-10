@@ -48,8 +48,8 @@ def overall_sentiment_analysis():
         public_tweets = api.search(user_input, count = 1000)
         dictionary_tweets = create_dictionary(public_tweets)
         cleaned_tweets = clean_tweets(dictionary_tweets)
-        polarity1 = '{0:.2f}'.format(get_sentiment(cleaned_tweets)[0])
-        subjectivity1 = '{0:.2f}'.format(get_sentiment(cleaned_tweets)[1])
+        polarity1 = get_sentiment(cleaned_tweets)[0]
+        subjectivity1 = get_sentiment(cleaned_tweets)[1]
         analysis = get_sentiment(cleaned_tweets)
         label1 = get_label(analysis, threshold=0)
 
@@ -64,8 +64,8 @@ def overall_sentiment_analysis():
             dictionary_tweets2 = create_dictionary(public_tweets2)
             cleaned_tweets2 = clean_tweets(dictionary_tweets2)
             analysis2 = get_sentiment(cleaned_tweets2)
-            polarity2 = '{0:.2f}'.format(get_sentiment(cleaned_tweets2)[0])
-            subjectivity2 = '{0:.2f}'.format(get_sentiment(cleaned_tweets2)[1])
+            polarity2 = get_sentiment(cleaned_tweets2)[0]
+            subjectivity2 = get_sentiment(cleaned_tweets2)[1]
             label2 = get_label(analysis2, threshold=0)
             
             n_group = 2
@@ -97,13 +97,13 @@ def overall_sentiment_analysis():
             plt.savefig(f'static/images/{user_input2v3}.png')
 
             return render_template(
-                "results1.html", firstkeyword = user_input, polarity1 = polarity1, subjectivity1 = subjectivity1,
-                label1= label1, secondkeyword = user_input2 , polarity2 = polarity2, subjectivity2 = subjectivity2,
+                "results1.html", firstkeyword = user_input, polarity1 = '{0:.2f}'.format(get_sentiment(cleaned_tweets)[0]), subjectivity1 = '{0:.2f}'.format(get_sentiment(cleaned_tweets)[1]),
+                label1= label1, secondkeyword = user_input2 , polarity2 = '{0:.2f}'.format(get_sentiment(cleaned_tweets2)[0]), subjectivity2 = '{0:.2f}'.format(get_sentiment(cleaned_tweets2)[1]),
                 label2 = label2, barplot = f'/static/images/{user_input2v3}.png') 
 
         else: 
             return render_template(
-            "results2.html", firstkeyword = user_input, polarity1 = polarity1, subjectivity1 = subjectivity1,
+            "results2.html", firstkeyword = user_input, polarity1 = '{0:.2f}'.format(get_sentiment(cleaned_tweets)[0]), subjectivity1 = '{0:.2f}'.format(get_sentiment(cleaned_tweets)[1]),
             analysis = analysis, label1=label1) 
 
     return render_template("overall.html", error=None)
