@@ -13,9 +13,14 @@ div {display:none;}
 
 @media only screen and (max-width: 600px) {
     body {
-       padding: 0;
-       margin-left: 0;
-       margin-right: 0;
+        padding: 3px 3px;
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+    input {
+        width: 1%;
+        padding: 2px 4px;
+        margin: 1.5px 0;
     }
  }
         
