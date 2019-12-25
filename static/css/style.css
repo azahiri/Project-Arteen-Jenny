@@ -65,7 +65,7 @@ li.dropdown {
     display: block;
 }
 
-img {border-radius: 0px; border: 3px solid lightskyblue; margin-top: 30px;}
+img {border-radius: 0px; border: 3px solid lightskyblue; margin-top: 30px; max-width:100%;height:auto;}
 
 form{margin-left: 15px;
     width: 200%;
